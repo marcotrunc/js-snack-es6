@@ -9,10 +9,10 @@ destructuring e template literal */
 // ** Creo Un array di bici da corsa
 
 const bicycles = [
-    { nameBrand: 'sarto', weight: 5.7 },
-    { nameBrand: 'rose', weight: 6.9 },
-    { nameBrand: 'canyon', weight: 6.7 },
-    { nameBrand: 'colnago', weight: 5.2 },
+    { nameBrand: 'Sarto', weight: 5.7 },
+    { nameBrand: 'Rose', weight: 6.9 },
+    { nameBrand: 'Canyon', weight: 6.7 },
+    { nameBrand: 'Colnago', weight: 5.2 },
 ]
 
 console.log(bicycles);
@@ -31,8 +31,8 @@ for (let i = 0; i < bicycles.length; i++) {
     nameArray.push(nameBrand);
 
 
-    if (min > bicycles[i]['weight']) {
-        min = bicycles[i]['weight'];
+    if (min > bicycle['weight']) {
+        min = bicycle['weight'];
         indice = i;
     }
 
@@ -45,7 +45,7 @@ console.log(`Il peso inferiore è: ${min}`);
 
 console.log(nameArray[indice]);
 const result1 = document.getElementById('ex-1');
-result1.innerText = `La bici che pesa di meno è ${nameArray[indice]}`;
+result1.innerHTML = `La bici che pesa di meno è <strong> ${nameArray[indice]} </strong>`;
 
 /*Snack2
 Creare un array di oggetti di squadre di calcio. Ogni squadra avrà diverse 
@@ -71,11 +71,11 @@ const teams = [
 const nameTeamArray = [];
 // Aggiungo nuovi elementi all'array
 for (let k = 0; k < teams.length; k++) {
-    teams[k]['point'] = generateRandom();
-    teams[k]['foluF'] = generateRandom();
-    teams[k]['foluS'] = generateRandom();
-
     const team = teams[k];
+    team['Point'] = generateRandom();
+    team['FoulsF'] = generateRandom();
+    team['FoulsS'] = generateRandom();
+
     const { nameTeam } = team;
     nameTeamArray.push(nameTeam);
 
@@ -89,12 +89,12 @@ let message = '';
 for (let i = 0; i < teams.length; i++) {
     const team = teams[i];
     for (let key in team) {
-        message += `<strong>${key}:</strong> ${team[key]} <br>`;
+        message += `<strong> ${key}:</strong > ${team[key]} <br>`;
         console.log(message)
     }
 }
 const result2 = document.getElementById('ex-2');
 result2.innerHTML = `<ul>
-    <li>L'array contenente le informazioni delle squadre è:<br> ${message}</li>
-    <li>L'array contenente i nomi delle squadre è: ${nameTeamArray}</li>
-</ul>`;
+        <li>L'array contenente le informazioni delle squadre è:<br> ${message}</li>
+        <li>L'array contenente i nomi delle squadre è: <strong>${nameTeamArray}</strong>.</li>
+    </ul>`;
