@@ -82,3 +82,19 @@ for (let k = 0; k < teams.length; k++) {
 }
 console.log(teams);
 console.log(nameTeamArray);
+
+
+
+let message = '';
+for (let i = 0; i < teams.length; i++) {
+    const team = teams[i];
+    for (let key in team) {
+        message += `<strong>${key}:</strong> ${team[key]} <br>`;
+        console.log(message)
+    }
+}
+const result2 = document.getElementById('ex-2');
+result2.innerHTML = `<ul>
+    <li>L'array contenente le informazioni delle squadre è:<br> ${message}</li>
+    <li>L'array contenente i nomi delle squadre è: ${nameTeamArray}</li>
+</ul>`;
