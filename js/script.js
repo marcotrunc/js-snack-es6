@@ -127,5 +127,68 @@ const getSomeItems = ((genericArray, a, b) => {
     });
     return newArray
 });
+
+// **Recupero elemento in pagina
+const resultThree = document.getElementById('ex-3');
+
+// **Costruisco il nuovo array
 const newArray = getSomeItems(numbers, 5, 10);
+
+// **Stampo in console
 console.log(newArray);
+
+// ** Stampo in pagina
+resultThree.innerHTML = `Dato l'array numbers:<br>
+ [${numbers}].<br>
+Stampo un nuovo array con elementi di numbers posizionati tra a e b:<br>
+[${newArray}], con a < b. `;
+
+
+/*SNACK 4
+Abbiamo un elenco degli studenti di una facoltà, identificati da id,
+nome e somma totale dei loro voti di esame...
+1. dobbiamo creare una lista contenente delle targhe(stringhe) 
+con il loro nome in maiuscolo
+ES(marco de iulio => Marco de iulio);
+2. Dobbiamo creare una lista di tutti gli studenti che hanno un 
+totale di voti superiore a 70
+3. Dobbiamo creare una lista di tutti gli studenti che hanno un 
+totale di voti superiore a 70 e id superiore a 120 */
+
+// ** Creiamo un gerico array di oggetti
+const students = [
+    { name: 'Isaac Newton', id: 80, grades: 88 },
+    { name: 'Albert Einstein', id: 90, grades: 89 },
+    { name: 'galileo galilei', id: 100, grades: 40 },
+    { name: 'charles Darwin', id: 150, grades: 50 },
+    { name: 'Stephen Hawking', id: 121, grades: 90 },
+    { name: 'Alessandro volta', id: 132, grades: 45 },
+];
+
+// ** Creo un array contenente il nome delle persone in maiuscolo
+const license = students.map((student) => {
+    return student.name.charAt(0).toUpperCase() + student.name.substring(1);
+});
+console.log(license);
+
+
+// ** Creo un array contenente gli studenti con grades > 70, filtrando students
+const highGrades = students.filter((item) => {
+    if (item.grades > 70) {
+        return true
+    }
+})
+
+console.log(highGrades);
+
+// ** Creo un array che contiene gli studenti che hanno i voti
+// maggiori di 70 e id maggiori di 120, filtrando l'array highGrades
+
+const highGradesAndId = highGrades.filter((item) => {
+    if (item.id > 120) {
+        return true
+    }
+});
+
+console.log(highGradesAndId);
+
