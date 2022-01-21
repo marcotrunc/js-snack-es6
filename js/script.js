@@ -139,9 +139,9 @@ console.log(newArray);
 
 // ** Stampo in pagina
 resultThree.innerHTML = `Dato l'array numbers:<br>
- [${numbers}].<br>
+<strong> [${numbers}]</strong>.<br>
 Stampo un nuovo array con elementi di numbers posizionati tra a e b:<br>
-[${newArray}], con a < b. `;
+<strong>[${newArray}]</strong>, con a < b. `;
 
 
 /*SNACK 4
@@ -173,22 +173,34 @@ console.log(license);
 
 
 // ** Creo un array contenente gli studenti con grades > 70, filtrando students
-const highGrades = students.filter((item) => {
-    if (item.grades > 70) {
-        return true
-    }
-})
+const highGrades = students.filter(item => (item.grades > 70));
 
 console.log(highGrades);
 
 // ** Creo un array che contiene gli studenti che hanno i voti
 // maggiori di 70 e id maggiori di 120, filtrando l'array highGrades
 
-const highGradesAndId = highGrades.filter((item) => {
-    if (item.id > 120) {
-        return true
-    }
-});
+const highGradesAndId = highGrades.filter(item => (item.id > 120));
+
 
 console.log(highGradesAndId);
 
+// ! Funzione per stampare in pagina un array di oggetti
+function printInPage(genericArray, key) {
+    const newArray = [];
+    for (let i = 0; i < genericArray.length; i++) {
+        item = genericArray[i]
+        newArray.push(item[key]);
+    }
+    return newArray;
+}
+
+// ** Richiamo elemento in pagina
+const resultFour = document.getElementById('ex-4');
+// ** Stampo elemento in pagina grazie alla funzione printInPage
+resultFour.innerHTML = `Array con il nome degli studenti in maiuscolo:<br>
+<strong>[${license}]</strong>.<br>
+Gli studenti con voto maggiore di 70 sono:<br>
+<strong>${printInPage(highGrades, 'name')}</strong>. <br>
+Lo studente con voto maggiore di 70 e id maggiore di 120 è:<br>
+<strong>${printInPage(highGradesAndId, 'name')}</strong>.`;
