@@ -1,104 +1,96 @@
-// console.log('JS OK');
-// /*Snack 1
-// Creare un array di oggetti:
-// Ogni oggetto descriverà una bici
-// da corsa con le seguenti proprietà: nome e peso.
-// Stampare in console la bici con peso minore utilizzando
-// destructuring e template literal */
+// ! Funzione per stampare in pagina un array di oggetti
+function printInPage(genericArray, key) {
+    const newArray = [];
+    for (let i = 0; i < genericArray.length; i++) {
+        item = genericArray[i]
+        newArray.push(item[key]);
+    }
+    return newArray;
+}
+// !--------------------------------
+/*Snack 1
+Creare un array di oggetti:
+Ogni oggetto descriverà una bici
+da corsa con le seguenti proprietà: nome e peso.
+Stampare in console la bici con peso minore utilizzando
+destructuring e template literal */
 
-// // ** Creo Un array di bici da corsa
+// ** Creo Un array di bici da corsa
 
-// const bicycles = [
-//     { nameBrand: 'Sarto', weight: 5.7 },
-//     { nameBrand: 'Rose', weight: 6.9 },
-//     { nameBrand: 'Canyon', weight: 6.7 },
-//     { nameBrand: 'Colnago', weight: 5.2 },
-// ]
+const bicycles = [
+    { nameBrand: 'Sarto', weight: 5.7 },
+    { nameBrand: 'Rose', weight: 6.9 },
+    { nameBrand: 'Canyon', weight: 6.7 },
+    { nameBrand: 'Colnago', weight: 5.2 },
+]
 
-// console.log(bicycles);
+// ** Assumo che la bici più leggera sia la prima
+let lightest = bicycles[0];
 
-// // ** Creo due array, il primo che contiene i nomi e il secondo il peso
-// const nameArray = [];
-// const weightArray = [];
-// let min = bicycles[0]['weight'];
-// // ** Indice che mi sarà utile per collegare i due array
-// let indice = 0;
+for (let i = 0; i < bicycles.length; i++) {
+    bycicle = bicycles[i];
+    if (bycicle.weight < lightest.weight) {
+        lightest = bycicle;
+    }
+}
 
-// for (let i = 0; i < bicycles.length; i++) {
-//     const bicycle = bicycles[i];
-//     const { weight } = bicycle;
-//     const { nameBrand } = bicycle
-//     weightArray.push(weight);
-//     nameArray.push(nameBrand);
+console.log(lightest);
+// ** Recuper Elemento in pagina 
+const resultOne = document.getElementById('ex-1');
+resultOne.innerHTML = `La bici da corsa che pesa di meno è la <strong>${lightest.nameBrand}</strong>.`;
 
+/*Snack2
+Creare un array di oggetti di squadre di calcio. Ogni squadra avrà diverse 
+proprietà: nome, punti fatti, falli subiti.
+Nome sarà l’unica proprietà da compilare, le altre saranno tutte settate a 0.
+Generare numeri random al posto degli 0 nelle proprietà:
+Punti fatti e falli subiti.
+Infine usando la destrutturazione creiamo un nuovo array i cui elementi 
+contengono solo nomi e falli subiti e stampiamo tutto in console.*/
+// ** Funzione che mi genera dei numeri casuale
+const generateRandom = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 
-//     if (min > bicycle['weight']) {
-//         min = bicycle['weight'];
-//         indice = i;
-//     }
+}
 
-// }
+const teams = [
+    { nameTeam: 'inter' },
+    { nameTeam: 'juventus' },
+    { nameTeam: 'milan' },
+    { nameTeam: 'atalanta' },
+];
 
-// console.log(indice);
-// console.log(weightArray);
-// console.log(nameArray);
-// console.log(`Il peso inferiore è: ${min}`);
+// Aggiungo nuovi elementi all'array
+const nameTeamArray = [];
+for (let k = 0; k < teams.length; k++) {
+    const team = teams[k];
+    team['point'] = generateRandom(1, 90);
+    team['foulsS'] = generateRandom(1, 90);
 
-// console.log(nameArray[indice]);
-// const result1 = document.getElementById('ex-1');
-// result1.innerHTML = `La bici che pesa di meno è <strong> ${nameArray[indice]} </strong>`;
+    const { nameTeam, foulsS } = team
+    nameTeamArray.push({ nameTeam, foulsS });
+}
+console.log(teams);
+console.log(nameTeamArray);
 
-// /*Snack2
-// Creare un array di oggetti di squadre di calcio. Ogni squadra avrà diverse 
-// proprietà: nome, punti fatti, falli subiti.
-// Nome sarà l’unica proprietà da compilare, le altre saranno tutte settate a 0.
-// Generare numeri random al posto degli 0 nelle proprietà:
-// Punti fatti e falli subiti.
-// Infine usando la destrutturazione creiamo un nuovo array i cui elementi 
-// contengono solo nomi e falli subiti e stampiamo tutto in console.*/
-// // ** Funzione che mi genera dei numeri casuale
-// const generateRandom = (min, max) => {
-//     const random = Math.floor(Math.random() * (max - min + 1)) + min;
-//     return random
-// }
-
-// const teams = [
-//     { nameTeam: 'inter' },
-//     { nameTeam: 'juventus' },
-//     { nameTeam: 'milan' },
-//     { nameTeam: 'atalanta' },
-// ];
-
-// const nameTeamArray = [];
-// // Aggiungo nuovi elementi all'array
-// for (let k = 0; k < teams.length; k++) {
-//     const team = teams[k];
-//     team['Point'] = generateRandom(1, 90);
-//     team['FoulsF'] = generateRandom(1, 90);
-//     team['FoulsS'] = generateRandom(1, 90);
-
-//     const { nameTeam, FoulsS } = team;
-//     nameTeamArray.push({ nameTeam, FoulsS });
-
-// }
-// console.log(teams);
-// console.log(nameTeamArray);
+function printInPage(genericArray, key) {
+    const newArray = [];
+    for (let i = 0; i < genericArray.length; i++) {
+        item = genericArray[i]
+        newArray.push(item[key]);
+    }
+    return newArray;
+}
+// !
+// ** Recupero elemento in pagina
+const resultTwo = document.getElementById('ex-2');
+resultTwo.innerHTML = `Nomi Squadre:<br>
+[<strong>${printInPage(teams, 'nameTeam')}</strong>]<br>
+punti:<strong>${printInPage(teams, 'point')}</strong><br>
+falli subiti <strong>${printInPage(teams, 'foulsS')}</strong>`;
 
 
 
-// let message = '';
-// for (let i = 0; i < teams.length; i++) {
-//     const team = teams[i];
-//     for (let key in team) {
-//         message += `<strong> ${key}:</strong > ${team[key]} <br>`;
-//         console.log(message)
-//     }
-// }
-// const result2 = document.getElementById('ex-2');
-// result2.innerHTML = `<ul>
-//         <li>L'array contenente le informazioni delle squadre è:<br> ${message}</li>
-//         <li>L'array contenente i nomi delle squadre è: <strong>${nameTeamArray}</strong>.</li>
-//     </ul>`;
 
 /*SNACK 3
 Scrivere una funzione che accetti tre argomenti, 
@@ -141,7 +133,7 @@ console.log(newArray);
 resultThree.innerHTML = `Dato l'array numbers:<br>
 <strong> [${numbers}]</strong>.<br>
 Stampo un nuovo array con elementi di numbers posizionati tra a e b:<br>
-<strong>[${newArray}]</strong>, con a < b. `;
+<strong>[${newArray}]<strong>, con a < b. `;
 
 
 /*SNACK 4
@@ -174,26 +166,18 @@ console.log(license);
 
 // ** Creo un array contenente gli studenti con grades > 70, filtrando students
 const highGrades = students.filter(item => (item.grades > 70));
-
 console.log(highGrades);
 
 // ** Creo un array che contiene gli studenti che hanno i voti
 // maggiori di 70 e id maggiori di 120, filtrando l'array highGrades
 
 const highGradesAndId = highGrades.filter(item => (item.id > 120));
-
-
 console.log(highGradesAndId);
 
-// ! Funzione per stampare in pagina un array di oggetti
-function printInPage(genericArray, key) {
-    const newArray = [];
-    for (let i = 0; i < genericArray.length; i++) {
-        item = genericArray[i]
-        newArray.push(item[key]);
-    }
-    return newArray;
-}
+// ** Creo un array contenente la prima lettera della singola parola in maiuscolo
+const license = students.map((student) => {
+    return student.name.charAt(0).toUpperCase();
+});
 
 // ** Richiamo elemento in pagina
 const resultFour = document.getElementById('ex-4');
